@@ -1,0 +1,46 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.iconsult.zeenebel.accountservice";
+import "Common/constants.proto";
+
+enum AccounType {
+  CREDIT = 0;
+  DEBIT = 1;
+  SAVINGS = 3;
+  CURRENT = 4;
+}
+
+message accountDto{
+  string accountNum = 1;
+  string cnic = 2;
+  string bankName = 3;
+  string branchId = 4;
+  AccounType accType = 5;
+  int32 accountId = 6;
+}
+message accoutsSearchRequest{
+  string cnic = 1;
+}
+message accountsSearchResponse{
+
+  repeated accountDto accountList = 1;
+  statusResponse statResp = 2;
+  string description = 3;
+
+
+}
+message showAccountDetailsRequest{
+  string accountNum = 1;
+
+}
+message showAccountDetailsResponse{
+  accountDto account = 1;
+  statusResponse statResp = 2;
+
+}
+
+service AccountServices{
+  rpc getAccountList(accoutsSearchRequest) returns (accountsSearchResponse);
+  rpc showAccountDetails(showAccountDetailsRequest) returns(showAccountDetailsResponse);
+
+}

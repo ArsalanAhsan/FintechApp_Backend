@@ -1,0 +1,14 @@
+package com.iconsult.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class UserServiceResponseDTO {
+String status;
+String description;
+
+}

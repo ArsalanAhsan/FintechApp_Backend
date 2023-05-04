@@ -1,0 +1,54 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.iconsult.zeenebel.complaintservice";
+import "Common/constants.proto";
+
+message ComplaintDto{
+  string subject=1;
+  string detail=2;
+  ProductType productType=3;
+  int64 id=4;
+  int32 userId=5;
+}
+
+
+message AddComplaintRequest {
+  string subject=1;
+  string detail=2;
+  ProductType productType=3;
+  int64 id=4;
+  int32 userId = 5;
+}
+
+
+message ComplaintResponse{
+  ComplaintDto complaint=1;
+}
+
+
+message GetAllComplaintResponse{
+  repeated ComplaintDto complaints=1;
+}
+
+message GetAllComplaintRequest{
+  int64 id=1;
+  int32 userId=2;
+}
+
+message GetComplaintRequest{
+  int64 id=1;
+  int32 userId=2;
+}
+
+message GeneralResponse{
+  statusResponse stat = 1;
+  string description=2;
+}
+
+service ComplaintService{
+  rpc addComplaint(AddComplaintRequest) returns (GeneralResponse);
+  rpc getAllComplaint(GetAllComplaintRequest) returns (GetAllComplaintResponse);
+  rpc getComplaintById(GetComplaintRequest) returns (ComplaintResponse);
+
+}
+

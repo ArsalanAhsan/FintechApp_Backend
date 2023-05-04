@@ -1,0 +1,31 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.iconsult.zeenebel.Constants";
+
+enum statusResponse{
+  Account_Registered_Successfully = 0;
+  Account_Registration_failed = 1;
+  SignIn_Successfully = 2;
+  Wrong_Id_Password = 3;
+  OTP_Mismatched=4;
+  OTP_verified=5;
+  No_Record_Found=6;
+  Record_found_Succesfully=7;
+  Record_Added_Successfully=8;
+}
+
+enum ProductType {
+  OTHER=0;
+  DEBIT_CARD=1;
+  CREDIT_CARD=2;
+  AUTO_LOAN=3;
+  HOME_FINANCE=4;
+  INTERNET_BANKING=5;
+  ATM=6;
+  BANK_ACCOUNT=7;
+}
+enum EmailOtp{
+  Otp_Verified_Successfully=0;
+  Otp_Verification_Failed=1;
+  Otp_Verification_Time_Out=2;
+}

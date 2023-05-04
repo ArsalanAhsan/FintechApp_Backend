@@ -1,0 +1,90 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.iconsult.zeenebel.userservice";
+import "Common/constants.proto";
+
+
+
+message userDto{
+  string firstName = 1;
+  string lastName = 2;
+  string DOB = 3;
+  string  phoneNumber = 4;
+  string cnic = 6;
+  string email = 7;
+  string password = 8;
+}
+
+message EmailCredentials{
+  string emailId = 1;
+  string pass = 2;
+
+}
+message PhoneCredentials{
+  string phoneNumber = 1;
+  string password = 2;
+}
+message CnicCredentials{
+  string cnicNumber = 1;
+  string password = 2;
+}
+
+message userSignInRequest{
+  oneof  mode{
+    PhoneCredentials pcr = 1;
+    CnicCredentials ccr = 2;
+    EmailCredentials ecr = 3;
+  }
+}
+
+message userResponse{
+  statusResponse stat = 1;
+  string description = 2;
+}
+
+message showUserRequest{}
+message showUserResponse{
+  repeated userDto users = 1;
+}
+message addBeneficiaryRequest{
+  string userId = 1;
+  string accountNum = 2;
+  string  bank = 3;
+  string  alias = 4;
+}
+
+message BeneficiaryRequestDTO{
+  int32 beneficiaryId = 1;
+  string accountNum = 2;
+  string userId = 3;
+  string bank = 4;
+  string alias = 5;
+}
+message showAllBeneficiaryRequest{
+  int32 userId = 1;
+}
+message showAllBeneficiaryResponse{
+
+  repeated BeneficiaryRequestDTO showAllDetails = 1;
+  statusResponse stat=2;
+}
+
+message showBeneficiaryRequest{
+  int32 BeneficiaryId = 1;
+}
+message showBeneficiaryResponse{
+
+  BeneficiaryRequestDTO showDetails = 1;
+  statusResponse stat=2;
+}
+
+
+service UserServices{
+  rpc userSignUp(userDto) returns (userResponse);
+  rpc userSignIn(userSignInRequest) returns (userResponse);
+  rpc showUsers(showUserRequest) returns (showUserResponse);
+  rpc addBeneficiary(addBeneficiaryRequest) returns(userResponse);
+  rpc showAllBeneficiary(showAllBeneficiaryRequest) returns (showAllBeneficiaryResponse);
+  rpc showBeneficiary(showBeneficiaryRequest) returns(showBeneficiaryResponse);
+
+}

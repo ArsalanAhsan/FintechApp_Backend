@@ -1,0 +1,21 @@
+server:
+  port: 8081
+
+
+
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: complaint-service
+          uri: lb://complaint-service
+          predicates:
+            - Path=/complaint/**
+#          filters:
+#            - AuthenticationFilter
+  config:
+    import: optional:configserver:http://localhost:8082
+
+

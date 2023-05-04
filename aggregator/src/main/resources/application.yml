@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/zenebeel?createDatabaseIfNotExist=true
+    username: root
+    password: admin
+grpc:
+  client:
+    user-service:
+      address: static://localhost:6565
+      negotiationType: plaintext

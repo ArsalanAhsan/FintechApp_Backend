@@ -1,0 +1,23 @@
+grpc:
+  client:
+    complaint-service:
+      address: static://localhost:6566
+      negotiationType: plaintext
+  server:
+    port: 6566
+
+spring:
+  application:
+    name: COMPLAINT-SERVICE
+  datasource:
+    username: root
+    password: admin
+    url: jdbc:mysql://localhost:3306/complaint-db?createDatabaseIfNotExist=true
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: 8083
+
+
